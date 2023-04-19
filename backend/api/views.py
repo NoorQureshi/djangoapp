@@ -9,28 +9,30 @@ from rest_framework import views
 from django.conf import settings
 
 
-class ListMovieView(ListCreateAPIView):
-    queryset = Movie.objects.all()
-    serializer_class = MovieSerializer
-    http_method_names = ['get']
-    # def create(self, request, *args, **kwargs):
-    #     serializer = self.get_serializer(data=request.data)
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# class ListMovieView(ListCreateAPIView):
+#     queryset = Movie.objects.all()
+#     serializer_class = MovieSerializer
+#     http_method_names = ['get']
+#     # def create(self, request, *args, **kwargs):
+#     #     serializer = self.get_serializer(data=request.data)
+#     #     if serializer.is_valid():
+#     #         serializer.save()
+#     #         return Response(serializer.data, status=status.HTTP_201_CREATED)
+#     #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class GenerateMovieView(ListCreateAPIView):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
-    http_method_names = ['post', 'get']
-    permission_classes = (IsAuthenticated, )
+    # http_method_names = ['post', 'get']
+    # permission_classes = (IsAuthenticated, )
 
     def create(self, request, *args, **kwargs):
+        print(request.data)
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class RetrieveMovieView(RetrieveAPIView):

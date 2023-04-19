@@ -1,4 +1,3 @@
-
 export const fetchMovies = async () => {
   try {
     const data = await fetch("http://127.0.0.1:8000/api/movies/");
@@ -6,10 +5,6 @@ export const fetchMovies = async () => {
     return movies;
   } catch (error) {
     console.error("Error fetching data: " + error);
-    return {
-      props: {
-        movies: [],
-      },
-    };
+    return [];
   }
 };

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-+6r1ncgolr9hf5=9jjkda(97h!2_glvk_bp80_s^epp(3p=k4%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api',
     'rest_framework',
-    'corsheaders',
     'rest_framework_simplejwt',
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
@@ -71,8 +71,16 @@ MIDDLEWARE = [
 
 # White listing the localhost:3000 port
 # This is for React
-CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000']
-CORS_ALLOW_METHODS = ['POST']
+
+# Configure CORS
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',  # Allow your Next.js frontend to access your Django API
+]
+
+CORS_ORIGIN_WHITELIST = ['http://localhost:3000']
 
 CORS_ALLOW_HEADERS = [
     'accept',

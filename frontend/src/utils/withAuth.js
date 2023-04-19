@@ -14,7 +14,7 @@ export default function withAuth(WrappedComponent) {
         router.replace('/login');
       } else {
         axios
-          .post('http://localhost:8000/token/verify/', { token })
+          .post('http://localhost:8000/api/token/verify/', { token })
           .then(() => {
             const decodedToken = jwt.decode(token);
 

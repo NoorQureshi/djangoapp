@@ -39,7 +39,7 @@ const Dashboard = ({ user }) => {
 
   function handleSave(e) {
     e.preventDefault()
-    axios.post(`http://localhost:8000/movies/create/`, movieData)
+    axios.post(`http://localhost:8000/api/movies/`, movieData)
       .then(response => {
         console.log(response.data)
         alert('Movie saved successfully')
@@ -109,6 +109,18 @@ const Dashboard = ({ user }) => {
                     className="border border-gray-400 rounded-lg py-2 px-3"
                     value={movieData.poster_path}
                     onChange={(e) => setMovieData({...movieData, poster_path: e.target.value})}
+              />
+            </div>
+            <div className="flex flex-col mb-4">
+              <label htmlFor="release_date" className="mb-1">
+                Release date
+              </label>
+              <input
+                    type="text"
+                    id="release_date"
+                    className="border border-gray-400 rounded-lg py-2 px-3"
+                    value={movieData.release_date}
+                    onChange={(e) => setMovieData({...movieData, release_date: e.target.value})}
               />
             </div>
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Submit Movie</button>

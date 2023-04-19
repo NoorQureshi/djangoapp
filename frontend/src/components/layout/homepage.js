@@ -31,14 +31,16 @@ const HomePage = ({ movies }) => (
   </div>
 );
 
-export async function getStaticProps () {
+export async function getStaticProps() {
   const movies = await fetchMovies();
+  console.log("getStaticProps movies:", movies); // Add this line
 
   return {
     props: {
       movies,
     },
   };
-};
+}
+
 
 export default HomePage;
