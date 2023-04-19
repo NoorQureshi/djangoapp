@@ -39,7 +39,7 @@ const Dashboard = ({ user }) => {
 
   function handleSave(e) {
     e.preventDefault()
-    axios.post(`http://localhost:8000/api/movies/create/`, movieData)
+    axios.post(`http://localhost:8000/movies/create/`, movieData)
       .then(response => {
         console.log(response.data)
         alert('Movie saved successfully')

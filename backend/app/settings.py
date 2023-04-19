@@ -49,6 +49,15 @@ REST_FRAMEWORK = {
     ],
 }
 
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'basic': {
+            'type': 'basic'
+        }
+    },
+    'SHOW_REQUEST_HEADERS': True,
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -62,7 +71,7 @@ MIDDLEWARE = [
 
 # White listing the localhost:3000 port
 # This is for React
-CORS_ORIGIN_WHITELIST = ['http://localhost:3000']
+CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000']
 CORS_ALLOW_METHODS = ['POST']
 
 CORS_ALLOW_HEADERS = [
