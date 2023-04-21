@@ -14,8 +14,8 @@ const Dashboard = ({ user }) => {
     }
     axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=e9dfeccf734a61b9a52d9d7660f0d0a1&language=en-US`)
       .then(({data}) => {
-        const {imdb_id, title, overview, poster_path, release_date} = data;
-        setMovieData({imdb_id, title, overview, poster_path, release_date});
+        const {imdb_id, title, overview, poster_path, release_date, genres} = data;
+        setMovieData({imdb_id, title, overview, poster_path, release_date, genres});
       })
       .catch(error => {
         console.log(error)
@@ -29,8 +29,8 @@ const Dashboard = ({ user }) => {
     }
     axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=e9dfeccf734a61b9a52d9d7660f0d0a1&language=en-US`)
       .then(({data}) => {
-        const {imdb_id, title, overview, poster_path, release_date} = data;
-        setMovieData({imdb_id, title, overview, poster_path, release_date});
+        const {imdb_id, title, overview, poster_path, release_date, genres} = data;
+        setMovieData({imdb_id, title, overview, poster_path, release_date, genres});
       })
       .catch(error => {
         console.log(error)
@@ -121,6 +121,23 @@ const Dashboard = ({ user }) => {
                     className="border border-gray-400 rounded-lg py-2 px-3"
                     value={movieData.release_date}
                     onChange={(e) => setMovieData({...movieData, release_date: e.target.value})}
+              />
+            </div>
+            <div className="flex flex-col mb-4">
+              <label htmlFor="genres" className="mb-1">
+                Genres
+              </label>
+              <input
+                type="text"
+                id="genres"
+                className="border border-gray-400 rounded-lg py-2 px-3"
+                value={movieData.genres.map((genre) => genre.name).join(", ")}
+                onChange={(e) =>
+                  setMovieData({
+                    ...movieData,
+                    genres: e.target.value.split(",").map((genre) => ({ name: genre.trim() })),
+                  })
+                }
               />
             </div>
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Submit Movie</button>

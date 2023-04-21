@@ -7,6 +7,7 @@ class Movie(models.Model):
     release_date = models.TextField()
     overview = models.TextField()
     poster_path = models.TextField()
+    genres = models.JSONField()
 
     def __str__(self):
         return self.title
